@@ -1,0 +1,19 @@
+#przyklad dla wszystkich dni: 
+
+  # Slice the actual data from the beginning to the end
+  actual_data = list(m.series.values())[:]  # Slice all elements
+
+  # Slice the forecast data with an offset of season length
+  forecast_data = list(fs_add.values())[m.season:]  # Start from season onwards
+
+  # Combine actual and forecast data (assuming they have the same keys)
+  all_data = actual_data + forecast_data
+
+  # Get the corresponding time keys for all data
+  all_time_keys = list(m.series.keys())[:] + list(fs_add.keys())[m.season:]
+
+  plt.plot(all_time_keys, all_data)
+  plt.xlabel("Time [days]")
+  plt.ylabel("Delivery volume [litres]")
+  plt.title("ULG95: season = " + str(m.season))
+  plt.show()
